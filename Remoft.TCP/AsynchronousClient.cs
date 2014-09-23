@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Remoft.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,20 +13,23 @@ namespace Remoft.TCP
     public class AsynchronousClient
     {
         // The port number for the remote device.
-        private const int port = 11000;
+        private readonly int port;
 
         // ManualResetEvent instances signal completion.
-        private static ManualResetEvent connectDone =
-            new ManualResetEvent(false);
-        private static ManualResetEvent sendDone =
-            new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone =
-            new ManualResetEvent(false);
+        private ManualResetEvent connectDone = new ManualResetEvent(false);
+        private ManualResetEvent sendDone = new ManualResetEvent(false);
+        private ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         // The response from the remote device.
-        private static String response = String.Empty;
+        private string response = String.Empty;
 
-        private static void StartClient()
+        public AsynchronousClient()
+        {
+            var settings = new Settings();
+            port = settings.TcpPort;
+        }
+
+        public void StartClient()
         {
             // Connect to a remote device.
             try
@@ -68,7 +72,7 @@ namespace Remoft.TCP
             }
         }
 
-        private static void ConnectCallback(IAsyncResult ar)
+        private void ConnectCallback(IAsyncResult ar)
         {
             try
             {
@@ -90,7 +94,7 @@ namespace Remoft.TCP
             }
         }
 
-        private static void Receive(Socket client)
+        private void Receive(Socket client)
         {
             try
             {
@@ -108,7 +112,7 @@ namespace Remoft.TCP
             }
         }
 
-        private static void ReceiveCallback(IAsyncResult ar)
+        private void ReceiveCallback(IAsyncResult ar)
         {
             try
             {
@@ -146,7 +150,7 @@ namespace Remoft.TCP
             }
         }
 
-        private static void Send(Socket client, String data)
+        private void Send(Socket client, String data)
         {
             // Convert the string data to byte data using ASCII encoding.
             byte[] byteData = Encoding.ASCII.GetBytes(data);
@@ -156,7 +160,7 @@ namespace Remoft.TCP
                 new AsyncCallback(SendCallback), client);
         }
 
-        private static void SendCallback(IAsyncResult ar)
+        private void SendCallback(IAsyncResult ar)
         {
             try
             {
@@ -176,11 +180,5 @@ namespace Remoft.TCP
             }
         }
 
-        public static int Main(String[] args)
-        {
-            StartClient();
-            Console.ReadKey();
-            return 0;
-        }
     }
 }

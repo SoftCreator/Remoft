@@ -44,6 +44,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateObject.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Remoft.Common\Remoft.Common.csproj">
+      <Project>{e1b90744-c5e3-419c-a49e-d7bb5e69bc02}</Project>
+      <Name>Remoft.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

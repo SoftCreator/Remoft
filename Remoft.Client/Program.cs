@@ -1,4 +1,5 @@
 ﻿using Remoft.Common;
+using Remoft.TCP;
 using Remoft.UDP;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Remoft.Client
             switch (command)
             {
                 case Commands.Echo:
+                    new AsynchronousClient().StartClient();
                     break;
             }
         }
