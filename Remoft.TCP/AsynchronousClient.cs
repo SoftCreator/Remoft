@@ -23,22 +23,42 @@ namespace Remoft.TCP
         // The response from the remote device.
         private string response = String.Empty;
 
-        public AsynchronousClient()
+        private readonly IPAddress remoteIP;
+
+        public AsynchronousClient(IPAddress remoteIP)
         {
             var settings = new Settings();
             port = settings.TcpPort;
+            this.remoteIP = remoteIP;
         }
 
-        public void StartClient()
+        public void SendHostInfo()
+        {
+            // Establish the remote endpoint for the socket.
+            IPEndPoint remoteEP = new IPEndPoint(remoteIP, port);
+            // Create a TCP/IP socket.
+            Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            // Connect to the remote endpoint.
+            client.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), client);
+            connectDone.WaitOne();
+
+            // Send test data to the remote device.
+            string hostInfo = new Settings().LocalMachine.Serialize();
+            Send(client, hostInfo+"<EOF>");
+            sendDone.WaitOne();
+
+            // Release the socket.
+            client.Shutdown(SocketShutdown.Both);
+            client.Close();
+        }
+
+        public void StartClient(string serverIp)
         {
             // Connect to a remote device.
             try
             {
                 // Establish the remote endpoint for the socket.
-                // The name of the 
-                // remote device is "host.contoso.com".
-                IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-                IPAddress ipAddress = ipHostInfo.AddressList[0];
+                IPAddress ipAddress = IPAddress.Parse(serverIp);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
                 // Create a TCP/IP socket.

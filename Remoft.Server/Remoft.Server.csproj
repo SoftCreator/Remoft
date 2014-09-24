@@ -52,6 +52,10 @@
       <Project>{e1b90744-c5e3-419c-a49e-d7bb5e69bc02}</Project>
       <Name>Remoft.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Remoft.TCP\Remoft.TCP.csproj">
+      <Project>{260f02b3-b954-4bf3-b54a-1b5ec3bf4ceb}</Project>
+      <Name>Remoft.TCP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Remoft.UDP\Remoft.UDP.csproj">
       <Project>{3c639e3f-5370-459f-bfc8-e3d977eea3d5}</Project>
       <Name>Remoft.UDP</Name>

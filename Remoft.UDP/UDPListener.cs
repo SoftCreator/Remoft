@@ -14,7 +14,7 @@ namespace Remoft.UDP
     {
         private readonly int listenPort;
 
-        public delegate void ProcessUDPEvent(Commands command);
+        public delegate void ProcessUDPEvent(Commands command, IPAddress remoteIP);
 
         public event ProcessUDPEvent ReceiveRequest;
 
@@ -37,17 +37,17 @@ namespace Remoft.UDP
                 {
                     byte[] bytes = listener.Receive(ref groupEP);
                     string msg = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                    Console.WriteLine(msg);
                     Commands command;
                     if (Enum.TryParse<Commands>(msg, out command))
                     {
-               
                         switch (command)
                         {
                             case Commands.Stop:
                                 done = true;
                                 break;
                         }
-                        if (ReceiveRequest != null) ReceiveRequest(command);
+                        if (ReceiveRequest != null) ReceiveRequest(command, groupEP.Address);
                     }
                 }
             }

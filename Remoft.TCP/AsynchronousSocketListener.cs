@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Remoft.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,9 +27,8 @@ namespace Remoft.TCP
             // Establish the local endpoint for the socket.
             // The DNS name of the computer
             // running the listener is "host.contoso.com".
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+            IPAddress ipAddress = new IPHelper().IP;
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, new Settings().TcpPort);
 
             // Create a TCP/IP socket.
             Socket listener = new Socket(AddressFamily.InterNetwork,
