@@ -15,6 +15,10 @@ namespace Remoft.TCP
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
+        public delegate void TCPReceiveDataEvent(string data);
+
+        public event TCPReceiveDataEvent ReceiveData;
+
         public AsynchronousSocketListener()
         {
         }
@@ -66,7 +70,7 @@ namespace Remoft.TCP
 
         }
 
-        public static void AcceptCallback(IAsyncResult ar)
+        public void AcceptCallback(IAsyncResult ar)
         {
             // Signal the main thread to continue.
             allDone.Set();
@@ -82,7 +86,7 @@ namespace Remoft.TCP
                 new AsyncCallback(ReadCallback), state);
         }
 
-        public static void ReadCallback(IAsyncResult ar)
+        public void ReadCallback(IAsyncResult ar)
         {
             String content = String.Empty;
 
@@ -107,10 +111,14 @@ namespace Remoft.TCP
                 {
                     // All the data has been read from the 
                     // client. Display it on the console.
-                    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-                        content.Length, content);
+                    //Console.WriteLine("Read {0} bytes from socket. \n Data : {1}", content.Length, content);
+                    if (ReceiveData != null)
+                    {
+                        content = content.Replace("<EOF>", "");
+                        ReceiveData(content);
+                    }
                     // Echo the data back to the client.
-                    Send(handler, content);
+                    // Send(handler, content);
                 }
                 else
                 {

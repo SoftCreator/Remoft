@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Remoft.Common
 {
     [DataContract]
-    public class NetworkMachineDTO
+    public class NetworkMachineDTO : IEquatable<NetworkMachineDTO>
     {
         [DataMember]
         public string HostName { get; set; }
@@ -33,14 +33,19 @@ namespace Remoft.Common
             }
         }
 
-        public NetworkMachineDTO Deserialize(string serialized)
+        public static NetworkMachineDTO Deserialize(string serialized)
         {
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(NetworkMachineDTO));
+            var ser = new DataContractJsonSerializer(typeof(NetworkMachineDTO));
             using (var ms = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(serialized)))
             {
                 var result = (NetworkMachineDTO)ser.ReadObject(ms);
                 return result;
             }
+        }
+
+        public bool Equals(NetworkMachineDTO other)
+        {
+            return other.Serialize() == this.Serialize();
         }
     }
 }
