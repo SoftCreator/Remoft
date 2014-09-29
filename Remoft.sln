@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remoft.TCP", "Remoft.TCP\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remoft.Server.WinFormsApplication", "Remoft.Server.WinFormsApplication\Remoft.Server.WinFormsApplication.csproj", "{44BDBCC6-2E50-4723-B26C-675B3DD33917}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remoft.Plugins", "Remoft.Plugins\Remoft.Plugins.csproj", "{BB92C14C-AFD9-41D0-AE90-F872F2609405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{44BDBCC6-2E50-4723-B26C-675B3DD33917}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44BDBCC6-2E50-4723-B26C-675B3DD33917}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44BDBCC6-2E50-4723-B26C-675B3DD33917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB92C14C-AFD9-41D0-AE90-F872F2609405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB92C14C-AFD9-41D0-AE90-F872F2609405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB92C14C-AFD9-41D0-AE90-F872F2609405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB92C14C-AFD9-41D0-AE90-F872F2609405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

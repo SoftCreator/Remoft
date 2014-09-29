@@ -13,6 +13,7 @@ using Remoft.TCP;
 using Remoft.UDP;
 using System.Linq;
 using System.Linq.Expressions;
+using Remoft.Plugins;
 
 namespace Remoft.Server.WinFormsApplication
 {
@@ -29,6 +30,11 @@ namespace Remoft.Server.WinFormsApplication
             _tcpListener.ReceiveData += _tcpListener_ReceiveData;
             var tcpListenerThread = new Thread(_tcpListener.StartListening);
             tcpListenerThread.Start();
+            var plugins = new PluginManager().GetAllPlugins();
+            foreach (IPlugin plugin in plugins)
+            {
+                listView1.Items.Add(plugin.Title);
+            }
         }
 
         private delegate void AddNetworkMachineDelegate(NetworkMachineDTO networkMachine);
@@ -107,6 +113,11 @@ namespace Remoft.Server.WinFormsApplication
                         RemoveNetworkMachine(md);
                 }
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

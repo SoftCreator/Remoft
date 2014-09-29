@@ -34,6 +34,7 @@
             this.timerSendUdp = new System.Windows.Forms.Timer(this.components);
             this.imageListCompImages = new System.Windows.Forms.ImageList(this.components);
             this.timerRefreshMachinesList = new System.Windows.Forms.Timer(this.components);
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -44,7 +45,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(285, 402);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(271, 402);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -69,11 +70,23 @@
             this.timerRefreshMachinesList.Interval = 4000;
             this.timerRefreshMachinesList.Tick += new System.EventHandler(this.timerRefreshMachinesList_Tick);
             // 
+            // listView1
+            // 
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.LargeImageList = this.imageListCompImages;
+            this.listView1.Location = new System.Drawing.Point(271, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(576, 402);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 402);
+            this.ClientSize = new System.Drawing.Size(847, 402);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -87,6 +100,7 @@
         private System.Windows.Forms.Timer timerSendUdp;
         private System.Windows.Forms.ImageList imageListCompImages;
         private System.Windows.Forms.Timer timerRefreshMachinesList;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 

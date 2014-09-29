@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Remoft.Server.WinFormsApplication">
-      <HintPath>obj\Debug\Remoft.Server.WinFormsApplication.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -93,6 +90,10 @@
     <ProjectReference Include="..\Remoft.Common\Remoft.Common.csproj">
       <Project>{e1b90744-c5e3-419c-a49e-d7bb5e69bc02}</Project>
       <Name>Remoft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Remoft.Plugins\Remoft.Plugins.csproj">
+      <Project>{bb92c14c-afd9-41d0-ae90-f872f2609405}</Project>
+      <Name>Remoft.Plugins</Name>
     </ProjectReference>
     <ProjectReference Include="..\Remoft.TCP\Remoft.TCP.csproj">
       <Project>{260f02b3-b954-4bf3-b54a-1b5ec3bf4ceb}</Project>
